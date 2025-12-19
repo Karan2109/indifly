@@ -18,17 +18,17 @@ const JourneySection = () => {
     {
       value: '7+',
       label: 'Companies',
-      hasGradient: false, // Glass-like background
+      hasGradient: false,
     },
     {
       value: '3L+',
       label: 'Partners',
-      hasGradient: false, // Glass-like background
+      hasGradient: false,
     },
     {
       value: '1.26Cr+',
       label: 'Customers',
-      hasGradient: false, // Glass-like background
+      hasGradient: false,
     },
   ];
 
@@ -43,7 +43,6 @@ const JourneySection = () => {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      {/* Gradient overlay over background image */}
       <div 
         className="absolute inset-0"
         style={{
@@ -53,11 +52,8 @@ const JourneySection = () => {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Heading */}
         <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
-          {/* Two overlapping Path1.png images with separate text */}
           <div className="flex items-center justify-center mb-6 flex-wrap relative">
-            {/* First image with "Our Journey," */}
             <div className="relative inline-block" style={{ zIndex: 1 }}>
               <Image
                 src="/Path1.png"
@@ -77,11 +73,10 @@ const JourneySection = () => {
               </span>
             </div>
 
-            {/* Second image with "Measured" - overlapping with gap */}
             <div 
               className="relative inline-block"
               style={{
-                marginLeft: '-70px', // Reduced overlap to create gap and ensure both texts are visible
+                marginLeft: '-70px',
                 zIndex: 2,
               }}
             >
@@ -109,7 +104,6 @@ const JourneySection = () => {
           </p>
         </div>
 
-        {/* Metrics cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {metrics.map((metric, index) => (
             <div

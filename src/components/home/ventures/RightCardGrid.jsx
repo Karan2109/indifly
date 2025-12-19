@@ -49,7 +49,6 @@ const RightCardGrid = () => {
 
   return (
     <div className="flex flex-col gap-4 h-full min-h-[350px] overflow-visible w-full">
-      {/* Top Row - Equal width cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-visible w-full flex-1">
         {topRowCards.map((card) => (
           <div key={card.id} className="overflow-visible relative h-full" style={{ minHeight: 0 }}>
@@ -68,7 +67,6 @@ const RightCardGrid = () => {
         ))}
       </div>
 
-      {/* Bottom Row - 65% and 35% width with 1.5px gap */}
       <div className="grid grid-cols-1 md:grid-cols-[65%_35%] gap-4 overflow-visible w-full flex-1">
         {bottomRowCards.map((card) => (
           <div key={card.id} className="overflow-visible relative h-full" style={{ minHeight: 0 }}>

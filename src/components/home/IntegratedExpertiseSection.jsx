@@ -55,10 +55,8 @@ const IntegratedExpertiseSection = () => {
 
   return (
     <section id="expertise" className="bg-white py-16 md:py-24 relative overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-orange-50 to-transparent"></div>
 
-      {/* Subtle geometric shapes */}
       <div className="absolute bottom-0 left-0 w-64 h-64 opacity-5">
         <div className="w-full h-full border-4 border-gray-400 rounded-full transform rotate-45"></div>
       </div>
@@ -67,7 +65,6 @@ const IntegratedExpertiseSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Heading */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Integrated expertise, delivered at <span className="text-orange-500">every stage.</span>
@@ -80,10 +77,8 @@ const IntegratedExpertiseSection = () => {
           </p>
         </div>
 
-        {/* Puzzle pieces layout with IES.png image */}
         <div className="max-w-6xl mx-auto" data-aos="zoom-in">
           <div className="relative">
-            {/* IES.png Image as the main visual */}
             <div className="relative w-full h-auto">
               <Image
                 src="/IES.png"

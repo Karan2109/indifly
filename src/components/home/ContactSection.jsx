@@ -58,7 +58,6 @@ const ContactSection = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -112,7 +111,6 @@ const ContactSection = () => {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{ backgroundColor: '#1A2B5B' }}
     >
-      {/* Decorative background circles */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute top-20 left-20 w-64 h-64 bg-blue-400 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-10 w-48 h-48 bg-blue-400 rounded-full blur-3xl"></div>
@@ -120,7 +118,6 @@ const ContactSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Single translucent card containing both sections - NO GAP */}
         <div 
           data-aos="fade-up"
           className="max-w-6xl mx-auto rounded-3xl overflow-hidden backdrop-blur-md"
@@ -132,7 +129,6 @@ const ContactSection = () => {
           }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Left section - Information (flush, no gap) */}
             <div className="p-8 md:p-10 text-white">
               <h2 
                 className="text-4xl md:text-5xl font-bold mb-6"
@@ -157,10 +153,8 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Right section - Form (flush, no gap - directly adjacent to left) */}
             <div className="p-8 md:p-10">
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Name */}
                 <div>
                   <input
                     type="text"
@@ -178,7 +172,6 @@ const ContactSection = () => {
                   {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                 </div>
 
-                {/* Email */}
                 <div>
                   <input
                     type="email"
@@ -196,7 +189,6 @@ const ContactSection = () => {
                   {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                 </div>
 
-                {/* Phone */}
                 <div>
                   <input
                     type="tel"
@@ -214,7 +206,6 @@ const ContactSection = () => {
                   {errors.phone && <p className="text-red-400 text-sm mt-1">{errors.phone}</p>}
                 </div>
 
-                {/* Company */}
                 <div>
                   <input
                     type="text"
@@ -229,7 +220,6 @@ const ContactSection = () => {
                   />
                 </div>
 
-                {/* Message */}
                 <div>
                   <textarea
                     name="message"
@@ -247,7 +237,6 @@ const ContactSection = () => {
                   {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                 </div>
 
-                {/* Submit button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -259,7 +248,6 @@ const ContactSection = () => {
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
 
-                {/* Status messages */}
                 {submitStatus === 'success' && (
                   <div className="bg-green-500 text-white px-4 py-3 rounded-lg">
                     Thank you! Your message has been sent successfully.

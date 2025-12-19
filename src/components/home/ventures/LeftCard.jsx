@@ -13,7 +13,6 @@ const LeftCard = () => {
       }}
     >
       <div className="p-4 md:p-6 lg:p-8 h-full flex flex-col justify-between relative z-0 min-h-[350px]">
-        {/* Top Content */}
         <div>
           <div 
             className="text-xs md:text-sm font-semibold uppercase mb-1"
@@ -35,7 +34,6 @@ const LeftCard = () => {
           </p>
         </div>
 
-        {/* CTA Button */}
         <div className="mt-auto">
           <button
             className="px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"

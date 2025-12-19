@@ -27,22 +27,18 @@ const VenturesSection = () => {
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl overflow-visible relative">
-        {/* Main Grid Container with 1.5px gap */}
         <div 
           className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-4 rounded-3xl overflow-visible relative"
           data-aos="fade-up"
         >
-          {/* Left Card - Fixed, no hover */}
           <div className="w-full order-1 lg:order-1 flex h-full relative z-10">
             <LeftCard />
           </div>
 
-          {/* Right Card Grid - 2x2 with hover effects */}
           <div className="w-full overflow-visible order-2 lg:order-2 flex h-full relative z-10">
             <RightCardGrid />
           </div>
 
-          {/* Man Image Overlay - 70% on Our Venture, 30% on RightCardGrid - Foreground */}
           <div 
             className="absolute bottom-0 z-30 pointer-events-none hidden lg:block"
             style={{

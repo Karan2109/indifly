@@ -41,7 +41,6 @@ const InsightsSection = () => {
       className="relative py-16 md:py-24 overflow-hidden"
       style={{ backgroundColor: '#FFEDE4' }}
     >
-      {/* Decorative background shapes */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 border-4 border-orange-300 transform rotate-45 rounded-lg"></div>
         <div className="absolute top-40 right-20 w-24 h-24 border-4 border-orange-300 rounded-full"></div>
@@ -50,7 +49,6 @@ const InsightsSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Heading with Path.png background */}
         <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
           <div className="relative inline-block">
             <Image
@@ -69,7 +67,6 @@ const InsightsSection = () => {
           </div>
         </div>
 
-        {/* Article cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {articles.map((article, index) => (
             <div
@@ -87,7 +84,6 @@ const InsightsSection = () => {
                 </p>
               </div>
               
-              {/* Blog Image */}
               <div className="px-6 pb-4">
                 <div className="rounded-xl overflow-hidden">
                   <Image
@@ -100,7 +96,6 @@ const InsightsSection = () => {
                 </div>
               </div>
 
-              {/* Read more button */}
               <div className="px-6 pb-6">
                 <button 
                   className="w-full py-3 px-6 bg-white border-2 border-gray-800 rounded-full font-semibold text-gray-900 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"

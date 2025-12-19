@@ -17,7 +17,6 @@ const OurSectorsSection = () => {
     });
   }, []);
 
-  // JSON data structure based on screenshots
   const sectorsData = {
     Payments: {
       Indipe: {
@@ -135,12 +134,10 @@ const OurSectorsSection = () => {
     },
   };
 
-  // Get current sector data
   const currentSector = sectorsData[activeTab];
   const currentSubTab = currentSector?.[activeSubTab];
   const subTabs = currentSector ? Object.keys(currentSector) : [];
 
-  // Reset sub-tab when main tab changes
   useEffect(() => {
     if (currentSector && !currentSector[activeSubTab]) {
       setActiveSubTab(Object.keys(currentSector)[0]);
@@ -152,9 +149,7 @@ const OurSectorsSection = () => {
   return (
     <section id="sectors" className=" py-16 md:py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Heading Section */}
         <div className="text-center mb-12" data-aos="fade-up">
-          {/* Main Title with brush stroke background */}
           <div className="relative inline-block mb-4">
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
@@ -170,27 +165,23 @@ const OurSectorsSection = () => {
             </h2>
           </div>
 
-          {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-800 mt-4">
             <span className="text-orange-700 font-bold">Integrated</span>,{' '}
             <span className="text-blue-800 font-bold">Inclusive</span>{' '}
             <span className="text-orange-400 font-bold">& Innovative</span>
           </p>
 
-          {/* Description */}
           <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
             Equipping diverse brands in multiple sectors with essential resources, expertise, and unwavering support.
           </p>
         </div>
 
-        {/* Category Navigation Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => {
                 setActiveTab(tab);
-                // Reset to first sub-tab when main tab changes
                 const firstSubTab = Object.keys(sectorsData[tab])[0];
                 setActiveSubTab(firstSubTab);
               }}
@@ -205,7 +196,6 @@ const OurSectorsSection = () => {
           ))}
         </div>
 
-        {/* Main Content Card */}
         {currentSubTab && (
           <div
             className="rounded-3xl p-6 md:p-10 shadow-2xl"
@@ -215,9 +205,7 @@ const OurSectorsSection = () => {
             data-aos="fade-up"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Left Side - Text Content */}
               <div>
-                {/* Sub-navigation Tabs */}
                 <div className="flex gap-2 mb-6">
                   {subTabs.map((subTab) => (
                     <button
@@ -234,20 +222,16 @@ const OurSectorsSection = () => {
                   ))}
                 </div>
 
-                {/* Heading */}
                 <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">
                   {currentSubTab.heading}
                 </h3>
 
-                {/* Main Title */}
                 <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                   {currentSubTab.title}
                 </h4>
 
-                {/* Description */}
                 <p className="text-gray-700 mb-6 leading-relaxed">{currentSubTab.description}</p>
 
-                {/* Features List */}
                 <ul className="space-y-3 mb-8">
                   {currentSubTab.features.map((feature, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -257,7 +241,6 @@ const OurSectorsSection = () => {
                   ))}
                 </ul>
 
-                {/* Action Buttons */}
                 <div className="flex flex-wrap gap-4">
                   {currentSubTab.buttons.map((button, index) => (
                     <button
@@ -275,9 +258,7 @@ const OurSectorsSection = () => {
                 </div>
               </div>
 
-              {/* Right Side - Image */}
               <div className="relative h-[500px] md:h-[600px]">
-                {/* Man Image */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src={currentSubTab.image}

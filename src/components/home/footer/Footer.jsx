@@ -22,9 +22,7 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8">
-          {/* Column 1 - Company Info */}
           <div data-aos="fade-up">
-            {/* Logo */}
             <div className="mb-4 relative z-20">
               <Image
                 src="/indiFly_Logo.png"
@@ -37,20 +35,16 @@ const Footer = () => {
               />
             </div>
             
-            {/* Tagline */}
             <p className="text-lg font-bold mb-4">
               Building <span style={{ color: '#E04A00' }}>Ventures</span>, Building <span style={{ color: '#E04A00' }}>Nation</span>.
             </p>
             
-            {/* Description */}
             <p className="text-gray-200 text-sm mb-6 leading-relaxed">
               A venture builder empowering mission-driven founders with resources, functional expertise and strategic partnerships to <span style={{ color: '#E04A00' }}>dream, build, and grow.</span>
             </p>
             
-            {/* Connect with us */}
             <div>
               <p className="text-sm font-semibold mb-3 text-white">Connect with us</p>
-              {/* Connected pill-shaped social icons - single continuous white container */}
               <div className="inline-flex bg-white rounded-full overflow-hidden">
                 <a
                   href="https://linkedin.com"
@@ -96,7 +90,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Column 2 - Home Links */}
           <div data-aos="fade-up" data-aos-delay="100">
             <h4 className="text-lg font-bold mb-4">Home</h4>
             <ul className="space-y-2">
@@ -123,7 +116,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3 - InCore Links */}
           <div data-aos="fade-up" data-aos-delay="200">
             <h4 className="text-lg font-bold mb-4">InCore</h4>
             <ul className="space-y-2">
@@ -150,7 +142,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4 - Quick Links */}
           <div data-aos="fade-up" data-aos-delay="300">
             <h4 className="text-lg font-bold mb-4">Quick links</h4>
             <ul className="space-y-2">
@@ -179,7 +170,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Large "Badhna Aasaan Hai" text at bottom - flush with bottom, no padding */}
       <div 
         className="absolute bottom-0 left-0 w-full text-center pointer-events-none"
         style={{
