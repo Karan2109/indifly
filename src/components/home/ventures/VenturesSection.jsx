@@ -35,33 +35,11 @@ const VenturesSection = () => {
             <LeftCard />
           </div>
 
-          <div className="w-full overflow-visible order-2 lg:order-2 flex h-full relative z-10">
+          <div className="w-full overflow-visible order-2 lg:order-2 flex h-full relative ">
             <RightCardGrid />
           </div>
 
-          <div 
-            className="absolute bottom-0 z-30 pointer-events-none hidden lg:block"
-            style={{
-              width: '50%',
-              left: "120px",
-              maxHeight: '80%',
-            }}
-          >
-            <Image
-              src="/man.png"
-              alt="Man"
-              width={300}
-              height={300}
-              className="object-contain"
-              style={{
-                width: '100%',
-                height: 'auto',
-                maxHeight: '300px',
-                opacity: 1,
-              }}
-              priority
-            />
-          </div>
+          
         </div>
       </div>
     </section>

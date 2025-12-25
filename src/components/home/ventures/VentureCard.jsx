@@ -3,6 +3,7 @@
 import React from 'react';
 
 const VentureCard = ({ 
+  index,
   title, 
   subtitle, 
   backgroundColor, 

@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import VentureCard from './VentureCard';
 
 const RightCardGrid = () => {
+  const [isHovered, setIsHovered] = useState(null)
   const topRowCards = [
     {
       id: 1,
@@ -49,10 +50,11 @@ const RightCardGrid = () => {
 
   return (
     <div className="flex flex-col gap-4 h-full min-h-[350px] overflow-visible w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-visible w-full flex-1">
+      <div className="flex">
         {topRowCards.map((card) => (
-          <div key={card.id} className="overflow-visible relative h-full" style={{ minHeight: 0 }}>
+          <div onMouseEnter={()=>{setIsHovered(card?.id)}} onMouseLeave={()=>{setIsHovered(null)}} key={card.id} className="overflow-visible relative h-full gap-4" style={{ minHeight: 0, width: isHovered === card?.id ? '125%' : '75%', marginRight:10, transition: 'width 0.3s ease' }}>
             <VentureCard
+              index={card.id}
               title={card.title}
               subtitle={card.subtitle}
               backgroundColor={card.backgroundColor}
@@ -67,10 +69,11 @@ const RightCardGrid = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[65%_35%] gap-4 overflow-visible w-full flex-1">
+      <div className="flex">
         {bottomRowCards.map((card) => (
-          <div key={card.id} className="overflow-visible relative h-full" style={{ minHeight: 0 }}>
+          <div onMouseEnter={() => { setIsHovered(card?.id) }} onMouseLeave={() => { setIsHovered(null) }} key={card.id} className="overflow-visible relative h-full" style={{ minHeight: 0, width: isHovered === card?.id ? '125%' : '75%', marginRight:10, transition: 'width 0.3s ease' }}>
             <VentureCard
+              index={card.id}
               title={card.title}
               subtitle={card.subtitle}
               backgroundColor={card.backgroundColor}
