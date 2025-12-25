@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Image from 'next/image';
 
 const IntegratedExpertiseSection = () => {
+  const imageContainerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -13,6 +16,33 @@ const IntegratedExpertiseSection = () => {
       once: true,
     });
   }, []);
+
+  // Intersection Observer to detect when image section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsVisible(true);
+            setHasAnimated(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+      }
+    );
+
+    if (imageContainerRef.current) {
+      observer.observe(imageContainerRef.current);
+    }
+
+    return () => {
+      if (imageContainerRef.current) {
+        observer.unobserve(imageContainerRef.current);
+      }
+    };
+  }, [hasAnimated]);
 
   const services = [
     {
@@ -53,6 +83,14 @@ const IntegratedExpertiseSection = () => {
     },
   ];
 
+  // Animation delays for each piece
+  const pieceAnimations = [
+    { delay: 0, transform: 'translate(-100%, -100%)' }, // top-left
+    { delay: 200, transform: 'translate(100%, -100%)' }, // top-right
+    { delay: 400, transform: 'translate(-100%, 100%)' }, // bottom-left
+    { delay: 600, transform: 'translate(100%, 100%)' }, // bottom-right
+  ];
+
   return (
     <section id="expertise" className="bg-white py-16 md:py-24 relative overflow-hidden">
       <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-orange-50 to-transparent"></div>
@@ -77,16 +115,64 @@ const IntegratedExpertiseSection = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto" data-aos="zoom-in">
-          <div className="relative">
-            <div className="relative w-full h-auto">
-              <Image
-                src="/IES.png"
-                alt="Integrated Expertise - Puzzle pieces layout"
-                width={1200}
-                height={800}
-                className="w-full h-auto object-contain"
-                priority
+        <div className="max-w-6xl mx-auto" ref={imageContainerRef}>
+          <div className="relative w-full" style={{ aspectRatio: '3/2', minHeight: '400px' }}>
+            {/* Container for the 4 pieces */}
+            <div className="relative w-full h-full overflow-hidden rounded-lg">
+              {/* Top Left Piece */}
+              <div
+                className="absolute top-0 left-0 w-1/2 h-1/2"
+                style={{
+                  backgroundImage: 'url(/IES.png)',
+                  backgroundSize: '200% 200%',
+                  backgroundPosition: '0% 0%',
+                  backgroundRepeat: 'no-repeat',
+                  transform: isVisible ? 'translate(0, 0) scale(1)' : pieceAnimations[0].transform + ' scale(0.8)',
+                  opacity: isVisible ? 1 : 0,
+                  transition: `transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${pieceAnimations[0].delay}ms, opacity 0.8s ease-out ${pieceAnimations[0].delay}ms`,
+                }}
+              />
+
+              {/* Top Right Piece */}
+              <div
+                className="absolute top-0 right-0 w-1/2 h-1/2"
+                style={{
+                  backgroundImage: 'url(/IES.png)',
+                  backgroundSize: '200% 200%',
+                  backgroundPosition: '100% 0%',
+                  backgroundRepeat: 'no-repeat',
+                  transform: isVisible ? 'translate(0, 0) scale(1)' : pieceAnimations[1].transform + ' scale(0.8)',
+                  opacity: isVisible ? 1 : 0,
+                  transition: `transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${pieceAnimations[1].delay}ms, opacity 0.8s ease-out ${pieceAnimations[1].delay}ms`,
+                }}
+              />
+
+              {/* Bottom Left Piece */}
+              <div
+                className="absolute bottom-0 left-0 w-1/2 h-1/2"
+                style={{
+                  backgroundImage: 'url(/IES.png)',
+                  backgroundSize: '200% 200%',
+                  backgroundPosition: '0% 100%',
+                  backgroundRepeat: 'no-repeat',
+                  transform: isVisible ? 'translate(0, 0) scale(1)' : pieceAnimations[2].transform + ' scale(0.8)',
+                  opacity: isVisible ? 1 : 0,
+                  transition: `transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${pieceAnimations[2].delay}ms, opacity 0.8s ease-out ${pieceAnimations[2].delay}ms`,
+                }}
+              />
+
+              {/* Bottom Right Piece */}
+              <div
+                className="absolute bottom-0 right-0 w-1/2 h-1/2"
+                style={{
+                  backgroundImage: 'url(/IES.png)',
+                  backgroundSize: '200% 200%',
+                  backgroundPosition: '100% 100%',
+                  backgroundRepeat: 'no-repeat',
+                  transform: isVisible ? 'translate(0, 0) scale(1)' : pieceAnimations[3].transform + ' scale(0.8)',
+                  opacity: isVisible ? 1 : 0,
+                  transition: `transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) ${pieceAnimations[3].delay}ms, opacity 0.8s ease-out ${pieceAnimations[3].delay}ms`,
+                }}
               />
             </div>
           </div>

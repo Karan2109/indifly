@@ -1,11 +1,26 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Image from 'next/image';
 
 const JourneySection = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  const [companiesValue, setCompaninesValue] = useState(0)
+  const [partnersValue, setPartnersValue] = useState(0)
+  const [customersValue, setCustomersValue] = useState(0)
+  
+  const maxCompaniesCount = 7
+  const maxPartnersCount = 3
+  const maxCustomersCount = 1.26
+  const animationDuration = 3000 // 3 seconds
+  const intervalTime = 16 // ~60fps for smooth animation
+  const totalSteps = animationDuration / intervalTime
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -14,26 +29,108 @@ const JourneySection = () => {
     });
   }, []);
 
+  // Intersection Observer to detect when section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsVisible(true);
+            setHasAnimated(true);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
+  useEffect(()=>{
+    if (!isVisible) return;
+    
+    const increment = maxCompaniesCount / totalSteps
+    const interval = setInterval(()=>{
+      setCompaninesValue((prev)=>{
+        if(prev >= maxCompaniesCount){
+          clearInterval(interval);
+          return maxCompaniesCount
+        }
+        else{
+          return Math.min(prev + increment, maxCompaniesCount)
+        }
+      })
+    }, intervalTime)
+    return ()=> clearInterval(interval)
+  },[isVisible])
+
+  useEffect(()=>{
+    if (!isVisible) return;
+    
+    const increment = maxPartnersCount / totalSteps
+    const interval = setInterval(()=>{
+      setPartnersValue((prev)=>{
+        if(prev >= maxPartnersCount){
+          clearInterval(interval);
+          return maxPartnersCount
+        }
+        else{
+          return Math.min(prev + increment, maxPartnersCount)
+        }
+      })
+    }, intervalTime)
+    return ()=> clearInterval(interval)
+  },[isVisible])
+
+  useEffect(()=>{
+    if (!isVisible) return;
+    
+    const increment = maxCustomersCount / totalSteps
+    const interval = setInterval(()=>{
+      setCustomersValue((prev)=>{
+        if(prev >= maxCustomersCount){
+          clearInterval(interval);
+          return maxCustomersCount
+        }
+        else{
+          return Math.min(prev + increment, maxCustomersCount)
+        }
+      })
+    }, intervalTime)
+    return ()=> clearInterval(interval)
+  },[isVisible])
+
   const metrics = [
     {
-      value: '7+',
       label: 'Companies',
+      suffix: '+',
       hasGradient: false,
     },
     {
-      value: '3L+',
       label: 'Partners',
+      suffix: 'L+',
       hasGradient: false,
     },
     {
-      value: '1.26Cr+',
       label: 'Customers',
+      suffix: 'Cr+',
       hasGradient: false,
     },
   ];
 
   return (
     <section 
+      ref={sectionRef}
       id="journey" 
       className="relative py-16 md:py-24 overflow-hidden w-full px-4"
       style={{
@@ -105,25 +202,36 @@ const JourneySection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-          {metrics.map((metric, index) => (
-            <div
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-              className="rounded-2xl p-6 md:p-8 text-center backdrop-blur-md border-2 border-white"
-              style={{
-                background: 'rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(1px)',
-              }}
-            >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
-                {metric.value}
+          {metrics.map((metric, index) => {
+            let displayValue = 0;
+            if (metric.label === 'Companies') {
+              displayValue = Math.floor(companiesValue);
+            } else if (metric.label === 'Partners') {
+              displayValue = Math.floor(partnersValue);
+            } else if (metric.label === 'Customers') {
+              displayValue = parseFloat(customersValue.toFixed(2));
+            }
+            
+            return (
+              <div
+                key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                className="rounded-2xl p-6 md:p-8 text-center backdrop-blur-md border-2 border-white"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(1px)',
+                }}
+              >
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
+                  {displayValue}{metric.suffix}
+                </div>
+                <div className="text-xl md:text-2xl font-semibold text-white">
+                  {metric.label}
+                </div>
               </div>
-              <div className="text-xl md:text-2xl font-semibold text-white">
-                {metric.label}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
